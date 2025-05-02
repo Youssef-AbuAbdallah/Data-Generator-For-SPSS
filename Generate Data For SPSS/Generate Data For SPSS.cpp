@@ -102,10 +102,10 @@ string ReadString(string Message)
 
 bool AskForConfirm(string Message)
 {
-	char AddMore;
+	string AddMore;
 	cout << Message;
 	cin >> AddMore;
-	return (toupper(AddMore) == 'Y');
+	return (toupper(AddMore[0]) == 'Y');
 }
 
 
@@ -444,7 +444,7 @@ vector <string> SetAllPossibleValues()
 	return PossibleValues;
 }
 
-bool PrepareValues()
+void PrepareValues()
 {
 	
 	string Answer;
@@ -466,11 +466,15 @@ bool PrepareValues()
 
 		else if (Answer == "2" || Answer == "number")
 		{
-			cout << "\nEntering  Possible values range for " << Column.Name << endl << endl;
-			cout << "Enter minimum value : ";
-			Column.StartRange = ReadNumber();
-			cout << "Enter maximum value : ";
-			Column.EndRange = ReadNumber() ;
+			do
+			{
+				cout << "\nEntering  Possible values range for " << Column.Name << endl << endl;
+				cout << "Enter minimum value : ";
+				Column.StartRange = ReadNumber();
+				cout << "Enter maximum value : ";
+				Column.EndRange = ReadNumber();
+			} while (Column.StartRange > Column.EndRange);
+			
 
 
 		}
